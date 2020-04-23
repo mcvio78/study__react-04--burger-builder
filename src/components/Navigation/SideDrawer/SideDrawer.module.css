@@ -18,11 +18,11 @@
 	}
 }
 
-.open {
+.Open {
 	transform: translateX(0);
 }
 
-.close {
+.Close {
 	transform: translateY(-100%);
 }
 
