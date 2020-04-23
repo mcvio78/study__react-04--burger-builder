@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 import classes from './Modal.module.css';
 import Auxiliary from '../../../hoc/Auxiliary';
 import Backdrop from '../Backdrop/Backdrop';
@@ -18,6 +20,10 @@ const modal = (props) => {
 			</div>
 		</Auxiliary>
 	);
+};
+
+modal.propTypes = {
+	show: PropTypes.bool
 };
 
 export default modal;
