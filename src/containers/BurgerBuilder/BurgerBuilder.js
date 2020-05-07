@@ -97,7 +97,7 @@ class BurgerBuilder extends Component {
 	};
 
 	purchaseContinueHandler = () => {
-		this.props.history.replace('/checkout')
+		this.props.history.push('/checkout')
 
 		// this.setState({ loading: true });
 		//
