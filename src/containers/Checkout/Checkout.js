@@ -10,7 +10,25 @@ class Checkout extends Component {
 			bacon: 1,
 			cheese: 1
 		}
+		// ingredients: null
 	};
+
+	componentDidMount() {
+
+		const query = new URLSearchParams(this.props.location.search);
+		let ingredientsFromURL = {};
+
+		for (let param of query.entries()) {
+			ingredientsFromURL[param[0]] = +param[1];
+		}
+
+		// for (const[key, value] of query.entries()) {
+		// 	ingredientsFromURL[key] = +value;
+		// 	console.log('ingredientsFromURL: ', ingredientsFromURL);
+		// }
+
+		this.setState({ ingredients: ingredientsFromURL })
+	}
 
 	checkoutCancelledHandler = () => {
 		this.props.history.goBack();
@@ -23,10 +41,11 @@ class Checkout extends Component {
 	render() {
 		return (
 			<div>
-				<CheckoutSummary
-					ingredients={this.state.ingredients}
-					checkoutCandelled={this.checkoutCancelledHandler}
-					checkoutContinued={this.checkoutContinuedHandler}/>
+				{this.state.ingredients ?
+					<CheckoutSummary
+						ingredients={this.state.ingredients}
+						checkoutCandelled={this.checkoutCancelledHandler}
+						checkoutContinued={this.checkoutContinuedHandler}/> : null}
 			</div>
 		)
 	}

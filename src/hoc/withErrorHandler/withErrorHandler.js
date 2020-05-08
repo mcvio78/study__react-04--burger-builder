@@ -11,7 +11,7 @@ const withErrorHandler = (WrappedComponent, axios) => {
 			error: null
 		};
 
-		// componentWillMount() {
+		// UNSAFE_componentWillMount() {
 		// 	this.reqInterceptor = axios.interceptors.request.use(req => {
 		// 		this.setState({ error: null });
 		// 		return req
@@ -19,7 +19,8 @@ const withErrorHandler = (WrappedComponent, axios) => {
 		//
 		// 	this.resInterceptor = axios.interceptors.response.use(res => res, error => {
 		// 		this.setState({ error: error })
-		// 	})
+		// 	});
+		// 	console.log('componentWillMount: ', this.reqInterceptor, this.resInterceptor);
 		// }
 
 		componentDidMount() {
@@ -38,7 +39,7 @@ const withErrorHandler = (WrappedComponent, axios) => {
 		componentWillUnmount() {
 			axios.interceptors.request.eject(this.reqInterceptor);
 			axios.interceptors.response.eject(this.resInterceptor);
-			console.log('willUnmount: ', this.reqInterceptor, this.resInterceptor);
+			console.log('componentWillUnmount: ', this.reqInterceptor, this.resInterceptor);
 		}
 
 		errorConfirmedHandler = () => {
