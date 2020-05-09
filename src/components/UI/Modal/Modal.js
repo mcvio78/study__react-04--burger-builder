@@ -12,9 +12,9 @@ class modal extends Component {
 			nextProps.children !== this.props.children
 	}
 
-	componentDidUpdate(prevProps, prevState, snapshot) {
-		console.log('[Modal.js] componentDidUpdate CHILDREN: ' + this.props.children);
-	}
+	// componentDidUpdate(prevProps, prevState, snapshot) {
+	// 	console.log('[Modal.js] componentDidUpdate CHILDREN: ' + this.props.children);
+	// }
 
 	render() {
 		return (
