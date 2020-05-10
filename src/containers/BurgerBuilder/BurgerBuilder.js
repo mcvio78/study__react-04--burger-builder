@@ -32,7 +32,7 @@ class BurgerBuilder extends Component {
 			this.setState({ ingredients: response.data })
 		})
 		.catch(() => {
-			this.setState({error: true})
+			this.setState({ error: true })
 		});
 	}
 
@@ -99,13 +99,15 @@ class BurgerBuilder extends Component {
 	purchaseContinueHandler = () => {
 		//this.props.history.push(`/checkout?meat=${this.state.ingredients.meat}&cheese=${this.state.ingredients.cheese}&bacon=${this.state.ingredients.bacon}&salad=${this.state.ingredients.salad}`)
 		let queryParams = [];
-		for(let ingredient in this.state.ingredients){
-			queryParams.push(encodeURIComponent(ingredient)+ '=' + encodeURIComponent(this.state.ingredients[ingredient]))
+		for (let ingredient in this.state.ingredients) {
+			if (this.state.ingredients.hasOwnProperty(ingredient)) {
+				queryParams.push(encodeURIComponent(ingredient) + '=' + encodeURIComponent(this.state.ingredients[ingredient]))
+			}
 		}
 		queryParams.push('price=' + this.state.totalPrice);
 		const queryString = queryParams.join('&');
 
-		this.props.history.push({pathname: '/checkout', search: '?' + queryString})
+		this.props.history.push({ pathname: '/checkout', search: '?' + queryString })
 	};
 
 	render() {
