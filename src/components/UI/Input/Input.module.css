@@ -4,13 +4,13 @@
 	box-sizing: border-box;
 }
 
-.Label{
+.Label {
 	font-weight: bold;
 	display: block;
 	margin-bottom: 8px;
 }
 
-.InputElement{
+.InputElement {
 	outline: none;
 	border: 2px solid #CCC;
 	background-color: white;
@@ -21,7 +21,7 @@
 	box-sizing: border-box;
 }
 
-.InputElement:focus{
+.InputElement:focus {
 	outline: none;
 	background-color: #CCC;
 }
@@ -30,4 +30,13 @@
 .Invalid {
 	border: 2px solid red;
 	background-color: #ffa7a6;
+}
+
+.ValidationError {
+	color: red;
+	margin: 5px 0;
+}
+
+.ValidationError span {
+	text-transform: capitalize
 }
