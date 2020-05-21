@@ -4,44 +4,47 @@ import Modal from '../../components/UI/Modal/Modal';
 import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 
 const withErrorHandler = (WrappedComponent, axios) => {
-	return class extends Component {
+  return class extends Component {/* eslint-disable-line */
 
-		state = {
-			error: null
-		};
+    state = {
+      error: null
+    };
 
-		componentDidMount() {
-			this.reqInterceptor = axios.interceptors.request.use(req => {
-				this.setState({ error: null });
-				return req
-			});
+    componentDidMount() {
+      this.reqInterceptor = axios.interceptors.request.use(req => {
+        this.setState({ error: null });
+        return req;
+      });
 
-			this.resInterceptor = axios.interceptors.response.use(res => res, error => {
-				this.setState({ error: error })
-			});
-		}
+      this.resInterceptor = axios.interceptors.response.use(
+        res => res,
+        error => {
+          this.setState({ error: error });
+        });
+    }
 
-		componentWillUnmount() {
-			axios.interceptors.request.eject(this.reqInterceptor);
-			axios.interceptors.response.eject(this.resInterceptor);
-			console.log('componentWillUnmount: ', this.reqInterceptor, this.resInterceptor);
-		}
+    componentWillUnmount() { /* disable-eslint-line */
+      axios.interceptors.request.eject(this.reqInterceptor);
+      axios.interceptors.response.eject(this.resInterceptor);
+    }
 
-		errorConfirmedHandler = () => {
-			this.setState({ error: null })
-		};
+    errorConfirmedHandler = () => {
+      this.setState({ error: null });
+    };
 
-		render() {
-			return (
-				<Auxiliary>
-					<Modal show={this.state.error} closeModal={this.errorConfirmedHandler}>
-						{this.state.error ? this.state.error.message : null}
-					</Modal>
-					<WrappedComponent {...this.props}/>
-				</Auxiliary>
-			)
-		}
-	}
+    render() {
+      return (
+        <Auxiliary>
+          <Modal
+            show={this.state.error}
+            closeModal={this.errorConfirmedHandler}>
+            {this.state.error ? this.state.error.message : null}
+          </Modal>
+          <WrappedComponent {...this.props}/>
+        </Auxiliary>
+      );
+    }
+  };
 };
 
 export default withErrorHandler;
