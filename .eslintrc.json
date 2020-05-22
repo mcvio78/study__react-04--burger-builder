@@ -39,7 +39,7 @@
     "comma-dangle": ["error", "never"],
     "object-curly-spacing": ["error", "always"],
     "arrow-parens": ["error", "as-needed"],
-    "linebreak-style": 0,
+    "linebreak-style": 1,
     "no-prototype-builtins": 1,
     "react/jsx-indent": ["error", 2, {
       "checkAttributes": true
