@@ -24,6 +24,7 @@
   },
   "plugins": ["react"],
   "rules": {
+    "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1 }],
     "no-use-before-define": "off",
     "react/jsx-filename-extension": "off",
     "max-len": ["error", {
