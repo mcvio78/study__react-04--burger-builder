@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import classes from './BuildControl.module.css';
 
 class BuildControl extends Component {
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
     return nextProps.disableButton !== this.props.disableButton;
   }
 
