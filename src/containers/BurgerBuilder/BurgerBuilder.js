@@ -18,15 +18,15 @@ class BurgerBuilder extends Component {
     error: false
   };
 
-  componentDidMount() {
-    // axios.get('https://mcburgerbuilder.firebaseio.com/ingredients.json')
-    //   .then(response => {
-    //     this.setState({ ingredients: response.data });
-    //   })
-    //   .catch(() => {
-    //     this.setState({ error: true });
-    //   });
-  }
+  // componentDidMount() {
+  //   axios.get('https://mcburgerbuilder.firebaseio.com/ingredients.json')
+  //     .then(response => {
+  //       this.setState({ ingredients: response.data });
+  //     })
+  //     .catch(() => {
+  //       this.setState({ error: true });
+  //     });
+  // }
 
   updatePurchasedState = ingredients => {
     const sum = Object.keys(ingredients).map(igKey => {

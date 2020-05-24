@@ -10,7 +10,8 @@ const withErrorHandler = (WrappedComponent, axios) => {
       error: null
     };
 
-    componentDidMount() {
+    // eslint-disable-next-line
+    componentWillMount() {
       this.reqInterceptor = axios.interceptors.request.use(req => {
         this.setState({ error: null });
         return req;

@@ -53,7 +53,7 @@
     "react/destructuring-assignment": "off",
     "no-nested-ternary": "warn",
     "react/prefer-stateless-function": "off",
-    "no-console": 1,
+    "no-console": 0,
     "eol-last": ["error", "always"],
     "semi": [2, "always"],
     "quotes": ["error", "single"],
