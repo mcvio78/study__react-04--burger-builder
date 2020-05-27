@@ -8,7 +8,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
-import burgerBuilderReducer from './store/reducers/burgerBuilder.js';
+import burgerBuilderReducer from './store/reducers/burgerBuilder';
 import orderReducer from './store/reducers/order';
 
 const logger = store => {
@@ -29,8 +29,7 @@ const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOO
 const rootReducer = combineReducers({
   brgBld: burgerBuilderReducer,
   ord: orderReducer
-}
-);
+});
 
 const store = createStore(
   rootReducer, /* preloadedState, */

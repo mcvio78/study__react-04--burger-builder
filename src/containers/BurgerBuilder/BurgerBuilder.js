@@ -8,25 +8,19 @@ import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
-import axios from '../../axios-orders';
 import * as actionCreators from '../../store/actions/index';
+import axios from '../../axios-orders';
 
 class BurgerBuilder extends Component {
   state = {
-    purchasing: false,
-    loading: false,
-    error: false
+    purchasing: false
+    // loading: false          // Redux
+    // error: false          // Redux
   };
 
-  // componentDidMount() {
-  //   axios.get('https://mcburgerbuilder.firebaseio.com/ingredients.json')
-  //     .then(response => {
-  //       this.setState({ ingredients: response.data });
-  //     })
-  //     .catch(() => {
-  //       this.setState({ error: true });
-  //     });
-  // }
+  componentDidMount() {
+    this.props.onInitIngredients();
+  }
 
   updatePurchasedState = ingredients => {
     const sum = Object.keys(ingredients).map(igKey => {
@@ -60,7 +54,7 @@ class BurgerBuilder extends Component {
 
     let orderSummary = null;
 
-    let burger = this.state.error ?
+    let burger = this.props.err ?
       <p>Ingredients can`&apos`t be loaded!</p> : <Spinner/>;
 
     if (this.props.ings) {
@@ -85,9 +79,9 @@ class BurgerBuilder extends Component {
         price={this.props.tot}/>;
     }
 
-    if (this.state.loading) {
-      orderSummary = <Spinner/>;
-    }
+    // if (this.state.loading) {          // Redux
+    //   orderSummary = <Spinner/>;
+    // }
 
 
     return (
@@ -105,7 +99,8 @@ class BurgerBuilder extends Component {
 const mapStateToProps = state => {
   return {
     ings: state.brgBld.ingredients,
-    tot: state.brgBld.totalPrice
+    tot: state.brgBld.totalPrice,
+    err: state.brgBld.error
   };
 };
 
@@ -114,7 +109,9 @@ const mapDispatchToProps = dispatch => {
     onIngredientAdded: ingName =>
       dispatch(actionCreators.addIngredient(ingName)),
     onIngredientRemoved: ingName =>
-      dispatch(actionCreators.removeIngredient(ingName))
+      dispatch(actionCreators.removeIngredient(ingName)),
+    onInitIngredients: () =>
+      dispatch(actionCreators.initIngredients())
   };
 };
 // eslint-disable-next-line
