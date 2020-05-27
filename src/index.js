@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
-import reducer from './store/reducer';
+import burgerBuilderReducer from './store/reducers/burgerBuilder.js';
+import orderReducer from './store/reducers/order';
 
 const logger = store => {
   return next => {
@@ -22,16 +24,17 @@ const logger = store => {
 };
 
 // eslint-disable-next-line
-// const myExplaination = () => functionWillWrapAction => placeForAction => functionWillWrapAction(placeForAction);
+const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+
+const rootReducer = combineReducers({
+  brgBld: burgerBuilderReducer,
+  ord: orderReducer
+}
+);
 
 const store = createStore(
-  reducer, /* preloadedState, */
-  compose(
-    applyMiddleware(logger),
-    window.__REDUX_DEVTOOLS_EXTENSION__ ?
-      window.__REDUX_DEVTOOLS_EXTENSION__() :
-      f => f
-  )
+  rootReducer, /* preloadedState, */
+  composeEnhancers(applyMiddleware(logger, thunk))
 );
 
 const app = (
