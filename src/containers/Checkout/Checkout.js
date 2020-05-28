@@ -6,34 +6,6 @@ import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSumm
 import ContactData from './ContactData/ContactData';
 
 class Checkout extends Component {
-  // state = {
-  //   ingredients: null,
-  //   totalPrice: 0
-  // };
-
-  // componentWillMount() { /* eslint-disable-line */
-  //   const query = new URLSearchParams(this.props.location.search);
-  //   let ingredientsFromURL = {};
-  //   let priceFromURL = 0;
-  //
-  //   for (let param of query.entries()) {
-  //     if (param[0] === 'price') {
-  //       priceFromURL = param[1];
-  //     } else {
-  //       ingredientsFromURL[param[0]] = +param[1];
-  //     }
-  //
-  //     // for (const [key, value] of query.entries()) {
-  //     //   ingredientsFromURL[key] = +value;
-  //     //   console.log('ingredientsFromURL: ', ingredientsFromURL);
-  //     // }
-  //   }
-  //
-  //   this.setState({
-  //     ingredients: ingredientsFromURL,
-  //     totalPrice: priceFromURL
-  //   });
-  // }
 
   checkoutCancelledHandler = () => {
     this.props.history.goBack();
@@ -51,16 +23,8 @@ class Checkout extends Component {
             ingredients={this.props.ings}
             checkoutCandelled={this.checkoutCancelledHandler}
             checkoutContinued={this.checkoutContinuedHandler}/> : null}
-        {/*<Route path={this.props.match.path +
-         '/contact-data'} component={ContactData}/>*/}
         <Route
           path={this.props.match.path + '/contact-data'}
-          // render={props => (
-          //   <ContactData
-          //     ingredients={this.props.ings}
-          //     price={this.props.tot}
-          //     {...props}/>
-          // )}
           component={ContactData}/>
       </div>
     );
