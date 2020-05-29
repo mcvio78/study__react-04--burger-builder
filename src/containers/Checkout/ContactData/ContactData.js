@@ -93,12 +93,10 @@ class ContactData extends Component {
       }
     },
     formIsValid: false
-    // loading: false
   };
 
   orderHandler = event => {
     event.preventDefault();
-    // this.setState({ loading: true });
 
     const formData = {};
     for (let formElementIdentifier in this.state.orderForm) {
@@ -203,7 +201,7 @@ class ContactData extends Component {
           disabled={!this.state.formIsValid}>Order</Button>
       </form>
     );
-    if (this.state.loading) {
+    if (this.props.load) {
       form = <Spinner/>;
     }
     return (
@@ -217,15 +215,16 @@ class ContactData extends Component {
 
 const mapStateToProps = state => {
   return {
-    ings: state.ingredients,
-    tot: state.totalPrice
+    ings: state.brgBld.ingredients,
+    tot: state.brgBld.totalPrice,
+    load: state.ord.loading
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onOrderBurger: dispatch(orderData => actions.purchaseBurgerStart(orderData))
+    onOrderBurger: orderData => dispatch(actions.purchaseBurger(orderData))
   };
 };
 // eslint-disable-next-line
-export default connect(mapStateToProps,mapDispatchToProps)(withErrorHandler(ContactData, axios));
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, axios));
