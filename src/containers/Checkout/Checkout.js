@@ -18,8 +18,11 @@ class Checkout extends Component {
   render() {
     let summary = <Redirect to='/' />;
     if(this.props.ings) {
+      const purchasedRedirect = this.props.purchased ?
+        <Redirect to='/' /> : null;
       summary = (
         <div>
+          {purchasedRedirect}
           <CheckoutSummary
             ingredients={this.props.ings}
             checkoutCandelled={this.checkoutCancelledHandler}
@@ -36,7 +39,8 @@ class Checkout extends Component {
 
 const mapStateToProps = state => {
   return {
-    ings: state.brgBld.ingredients
+    ings: state.brgBld.ingredients,
+    purchased: state.ord.purchased
   };
 };
 
