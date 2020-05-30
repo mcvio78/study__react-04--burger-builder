@@ -13,56 +13,61 @@ const INGREDIENT_PRICES = {
   meat: 1.3,
   bacon: 0.7
 };
-/* eslint-disable */
+
+const addIngredient = (state, action) => {
+  const updatedIngredient = {
+    [action.ingredientName]: state.ingredients[action.ingredientName] + 1
+  };
+  const updatedIngredients = updateObject(state.ingredients, updatedIngredient);
+  const stateUpdatedProperties = {
+    ingredients: updatedIngredients,
+    totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName]
+  };
+  return updateObject(state, stateUpdatedProperties);
+};
+
+const removeIngredient = (state, action) => {
+  const updatedIngredient = {
+    [action.ingredientName]: state.ingredients[action.ingredientName] - 1
+  };
+  const updatedIngredients = updateObject(state.ingredients, updatedIngredient);
+  const stateUpdatedProperties = {
+    ingredients: updatedIngredients,
+    totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName]
+  };
+  return updateObject(state, stateUpdatedProperties);
+};
+
+const setIngredient = (state, action) => {
+  const initIngredients = {
+    salad: action.ingredients.salad,
+    bacon: action.ingredients.bacon,
+    cheese: action.ingredients.cheese,
+    meat: action.ingredients.meat
+  };
+  const updatedIngredients = updateObject(state.ingredients, initIngredients);
+  const stateUpdatedProperties = {
+    ingredients: updatedIngredients,
+    error: false,
+    totalPrice: 4
+  };
+  return updateObject(state, stateUpdatedProperties);
+};
+
+const fetchIngredientFailed = (state, action) => { //eslint-disable-line
+  const stateUpdatedProperties = {
+    error: true
+  };
+  return updateObject(state, stateUpdatedProperties);
+};
+
 const burgerBuilderReducer = (state = initialState, action) => {
   switch (action.type) {
-
-    case actionTypes.ADD_INGREDIENT: {
-      const updatedIngredient = { [action.ingredientName]: state.ingredients[action.ingredientName] + 1 };
-      const updatedIngredients = updateObject(state.ingredients, updatedIngredient);
-      const stateUpdatedProperties = {
-        ingredients: updatedIngredients,
-        totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName]
-      };
-      return updateObject(state, stateUpdatedProperties);
-    }
-
-    case actionTypes.REMOVE_INGREDIENT: {
-      const updatedIngredient = { [action.ingredientName]: state.ingredients[action.ingredientName] - 1 };
-      const updatedIngredients = updateObject(state.ingredients, updatedIngredient);
-      const stateUpdatedProperties = {
-        ingredients: updatedIngredients,
-        totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName]
-      };
-      return updateObject(state, stateUpdatedProperties);
-    }
-    /* eslint-enable */
-
-    case actionTypes.SET_INGREDIENTS: {
-      const initIngredients = {
-        salad: action.ingredients.salad,
-        bacon: action.ingredients.bacon,
-        cheese: action.ingredients.cheese,
-        meat: action.ingredients.meat
-      };
-      const updatedIngredients = updateObject(state.ingredients, initIngredients); // eslint-disable-line
-      const stateUpdatedProperties = {
-        ingredients: updatedIngredients,
-        error: false,
-        totalPrice: 4
-      };
-      return updateObject(state, stateUpdatedProperties);
-    }
-
-    case actionTypes.FETCH_INGREDIENTS_FAILED: {
-      const stateUpdatedProperties = {
-        error: true
-      };
-      return updateObject(state, stateUpdatedProperties);
-    }
-
-    default:
-      return state;
+    case actionTypes.ADD_INGREDIENT: return addIngredient(state, action);
+    case actionTypes.REMOVE_INGREDIENT: return removeIngredient(state, action);
+    case actionTypes.SET_INGREDIENTS: return setIngredient(state, action);
+    case actionTypes.FETCH_INGREDIENTS_FAILED: return fetchIngredientFailed(state, action); //eslint-disable-line
+    default: return state;
   }
 };
 
