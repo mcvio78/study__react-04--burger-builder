@@ -49,9 +49,9 @@ const input = props => {
   let validationError = null;
   if (props.notValid && props.touched) {
     validationError =
-      <p className={classes.ValidationError}>Please enter a valid <span>
+      <p className={classes.ValidationError}><i>Please enter a valid <span>
         {props.fieldName}
-      </span>!</p>;
+      </span>!</i></p>;
   }
 
   return (

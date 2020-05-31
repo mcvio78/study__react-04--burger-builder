@@ -115,7 +115,7 @@ class ContactData extends Component {
     this.props.onOrderBurger(order);
   };
 
-  static checkValidity(value, rules) {          // Static method
+  static checkValidity(value, rules) { // Static method
     let isValid = true;
 
     if (!rules) {
@@ -132,6 +132,17 @@ class ContactData extends Component {
 
     if (rules.maxLength) {
       isValid = value.length <= rules.maxLength && isValid;
+    }
+
+    if (rules.isEmail) {
+      /* eslint-disable-next-line */
+      const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+      isValid = pattern.test(value) && isValid;
+    }
+
+    if (rules.isNumeric) {
+      const pattern = /^\d+$/;
+      isValid = pattern.test(value) && isValid;
     }
 
     return isValid;
@@ -159,7 +170,7 @@ class ContactData extends Component {
 
     let formIsValid = true;
     for (const inputIdentifiers in updatedForm) {
-      if (updatedForm.hasOwnProperty(inputIdentifiers)) {/*eslint-disable-line*/
+      if (updatedForm.hasOwnProperty(inputIdentifiers)) {
         formIsValid = updatedForm[inputIdentifiers].valid && formIsValid;
       }
     }
