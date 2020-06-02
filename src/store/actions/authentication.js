@@ -22,6 +22,20 @@ const authenticationFail = err => {
   };
 };
 
+const logout = () => {
+  return {
+    type: actionTypes.AUTHENTICATION_LOGOUT
+  };
+};
+
+const checkAuthExpiration = expiration => {
+  return dispatch => {
+    setTimeout(()=> {
+      dispatch(logout());
+    }, expiration * 1000);
+  };
+};
+
 export const authentication = (email, password, isSignUp) => {
   return dispatch => {
     dispatch(authenticationStart());
@@ -41,6 +55,7 @@ export const authentication = (email, password, isSignUp) => {
     )
       .then(response => {
         console.log('response: ', response);
+        dispatch(checkAuthExpiration(response.data.expiresIn));
         dispatch(authenticationSuccess(response.data.idToken, response.data.localId));/* eslint-disable-line */
       })
       .catch(error => {
