@@ -10,14 +10,15 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import burgerBuilderReducer from './store/reducers/burgerBuilder';
 import orderReducer from './store/reducers/order';
+import authReducer from './store/reducers/authentication';
 
 const logger = store => {
   return next => {
     return action => {
-      console.log('[Middleware] before state', store.getState());
-      console.log('[Middleware] Dispatching', action);
+      //console.log('[Middleware] before state', store.getState());
+      //console.log('[Middleware] Dispatching', action);
       const result = next(action);
-      console.log('[Middleware] next state', store.getState());
+      //console.log('[Middleware] next state', store.getState());
       return result;
     };
   };
@@ -28,7 +29,8 @@ const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOO
 
 const rootReducer = combineReducers({
   brgBld: burgerBuilderReducer,
-  ord: orderReducer
+  ord: orderReducer,
+  auth: authReducer
 });
 
 const store = createStore(
