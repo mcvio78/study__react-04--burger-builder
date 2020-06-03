@@ -22,7 +22,7 @@ const authenticationFail = err => {
   };
 };
 
-const logout = () => {
+export const logout = () => {
   return {
     type: actionTypes.AUTHENTICATION_LOGOUT
   };
