@@ -44,6 +44,12 @@ class Auth extends Component {
     isSignUp: true
   }
 
+  componentDidMount() {
+    if(!this.props.buildBrg && this.props.redPath !== '/'){
+      this.props.onSetAuthRedirectPath();
+    }
+  }
+
   static checkValidity(value, rules) { // Static method
     let isValid = true;
 
@@ -150,7 +156,7 @@ class Auth extends Component {
 
     let redirectAuth = null;
     if(this.props.isAuth){
-      redirectAuth = <Redirect to='/'/>;
+      redirectAuth = <Redirect to={this.props.redPath}/>;
     }
 
     return (
@@ -175,14 +181,17 @@ const mapStateToProps = state => {
   return {
     load: state.auth.loading,
     err: state.auth.error,
-    isAuth: state.auth.token !== null
+    isAuth: state.auth.token !== null,
+    buildBrg: state.brgBld.building,
+    redPath: state.auth.authRedirectPath
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     /* eslint-disable-next-line */
-    onAuthentication: (email, password, isSignUp) => dispatch(actions.authentication(email, password, isSignUp))
+    onAuthentication: (email, password, isSignUp) => dispatch(actions.authentication(email, password, isSignUp)),
+    onSetAuthRedirectPath: ()=> dispatch(actions.setAuthRedirectPath('/'))
   };
 };
 
