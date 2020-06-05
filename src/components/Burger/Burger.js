@@ -19,12 +19,12 @@ const burger = props => {
 
   return (
     <div className={classes.Burger}>
-      <BurgerIngredient type='bread-top'></BurgerIngredient>
+      <BurgerIngredient type="bread-top"></BurgerIngredient>
       {/*<BurgerIngredient type='cheese'></BurgerIngredient>*/}
       {/*<BurgerIngredient type='meat'></BurgerIngredient>*/}
 
       {transformedIngredients}
-      <BurgerIngredient type='bread-bottom'></BurgerIngredient>
+      <BurgerIngredient type="bread-bottom"></BurgerIngredient>
     </div>
   );
 };

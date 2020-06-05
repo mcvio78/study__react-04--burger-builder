@@ -27,7 +27,7 @@
     "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1 }],
     "no-use-before-define": "off",
     "react/jsx-filename-extension": "off",
-    "max-len": ["error", {
+    "max-len": ["warn", {
         "code": 80,
         "ignorePattern": "^import\\s.+\\sfrom\\s.+;$",
         "ignoreUrls": true
@@ -53,6 +53,7 @@
     "react/destructuring-assignment": "off",
     "no-nested-ternary": "warn",
     "react/prefer-stateless-function": "off",
+    "jsx-quotes": ["error", "prefer-double"],
     "no-console": 0,
     "no-unused-vars": 1,
     "eol-last": ["error", "always"],

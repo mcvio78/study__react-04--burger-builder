@@ -8,7 +8,7 @@ import Backdrop from '../../UI/Backdrop/Backdrop';
 
 const sideDrawer = props => {
   // conditional CSS
-  let attachedClasses = [classes.SideDrawer, classes.Close];
+  let attachedClasses;
 
   if (props.open) {
     attachedClasses = [classes.SideDrawer, classes.Open];
@@ -21,7 +21,7 @@ const sideDrawer = props => {
       <Backdrop
         clicked={props.closed}
         show={props.open}/>
-      <div className={attachedClasses.join(' ')}>
+      <div className={attachedClasses.join(' ')} onClick={props.closed}>
         <div className={classes.Logo}>
           <Logo/>
         </div>
