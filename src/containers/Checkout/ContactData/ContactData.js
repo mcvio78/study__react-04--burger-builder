@@ -8,6 +8,7 @@ import axios from '../../../axios-orders';
 import Input from '../../../components/UI/Input/Input';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler.js';
 import * as actions from '../../../store/actions/index';
+import { updateObject } from '../../../shared/utility';
 
 class ContactData extends Component {
   state = {
@@ -150,24 +151,39 @@ class ContactData extends Component {
   }
 
   inputChangeHandler = (event, id) => {
-    const updatedForm = {
-      ...this.state.orderForm
-    };
-    const updatedElement = {
-      ...updatedForm[id]
-    };
 
-    updatedElement.value = event.target.value;
+    const updatedElement = updateObject(this.state.orderForm[id],{
+      value: event.target.value,
+      valid: ContactData.checkValidity(
+        event.target.value,
+        this.state.orderForm[id].validation
+      ),
+      touched: true
+    });
 
-    updatedElement.valid =
-      ContactData.checkValidity(
-        updatedElement.value,
-        updatedElement.validation
-      );
+    const updatedForm = updateObject(this.state.orderForm,{
+      [id]: updatedElement
+    });
 
-    updatedElement.touched = true;
 
-    updatedForm[id] = updatedElement;
+    // const updatedForm = {
+    //   ...this.state.orderForm
+    // };
+    // const updatedElement = {
+    //   ...updatedForm[id]
+    // };
+    //
+    // updatedElement.value = event.target.value;
+    //
+    // updatedElement.valid =
+    //   ContactData.checkValidity(
+    //     updatedElement.value,
+    //     updatedElement.validation
+    //   );
+    //
+    // updatedElement.touched = true;
+    //
+    // updatedForm[id] = updatedElement;
 
     let formIsValid = true;
     for (const inputIdentifiers in updatedForm) {
