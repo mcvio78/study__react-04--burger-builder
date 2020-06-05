@@ -109,10 +109,11 @@ class ContactData extends Component {
     const order = {
       ingredients: this.props.ings,
       price: this.props.tot,
-      orderData: formData
+      orderData: formData,
+      userId: this.props.uId
     };
 
-    this.props.onOrderBurger(order);
+    this.props.onOrderBurger(order, this.props.tkn);
   };
 
   static checkValidity(value, rules) { // Static method
@@ -228,13 +229,15 @@ const mapStateToProps = state => {
   return {
     ings: state.brgBld.ingredients,
     tot: state.brgBld.totalPrice,
-    load: state.ord.loading
+    load: state.ord.loading,
+    tkn: state.auth.token,
+    uId: state.auth.userId
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onOrderBurger: orderData => dispatch(actions.purchaseBurger(orderData))
+    onOrderBurger: (orderData, token) => dispatch(actions.purchaseBurger(orderData, token))/* eslint-disable-line */
   };
 };
 // eslint-disable-next-line
