@@ -6,6 +6,14 @@ import classes from './Layout.module.css';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 
+
+class Class extends Component {
+  render() {
+
+  }
+}
+
+
 class Layout extends Component {
   state = {
     showSideDrawer: false
