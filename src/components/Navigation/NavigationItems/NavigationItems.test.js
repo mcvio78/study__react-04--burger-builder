@@ -7,9 +7,28 @@ import NavigationItem from '../NavigationItem/NavigationItem';
 
 configure({ adapter: new Adapter() });
 
+/* eslint-disable */
 describe('<NavigationItems />', () => {
-  it('should render two <NavigationItem /> elements if not authenticated', () => {
-    const wrapper = shallow(<NavigationItems />);
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallow(<NavigationItems />);
+  })
+
+  test('should render two <NavigationItem /> elements if not authenticated', () => {
     expect(wrapper.find(NavigationItem)).toHaveLength(2);
   });
+
+  test('should render three <NavigationItem /> elements if authenticated', () => {
+    // wrapper = shallow(<NavigationItems isAuthenticated />);
+    wrapper.setProps({isAuthenticated: true})
+    expect(wrapper.find(NavigationItem)).toHaveLength(3);
+  });
+
+  test('should render logout <NavigationItem /> elements only if authenticated', () => {
+    wrapper.setProps({isAuthenticated: true})
+    expect(wrapper.contains(<NavigationItem link="/logout">Logout</NavigationItem>)).toEqual(true);
+  });
+
 });
+/* eslint-enable */
