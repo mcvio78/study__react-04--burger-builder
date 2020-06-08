@@ -15,7 +15,7 @@ const AsyncAuthComponent = asyncComponent(() => import('./containers/Auth/Auth')
 const AsyncCheckoutComponent = asyncComponent(() => import('./containers/Checkout/Checkout') );
 const AsyncOrdersComponent = asyncComponent(() => import('./containers/Orders/Orders') );
 /* eslint-enable */
-class App extends Component {
+export class App extends Component {
 
   // componentDidMount() {
   //   console.log(
