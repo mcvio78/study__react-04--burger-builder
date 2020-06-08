@@ -4,7 +4,6 @@ import Adapter from 'enzyme-adapter-react-16';
 
 import { BurgerBuilder } from './BurgerBuilder';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
-import Burger from '../../components/Burger/Burger';
 
 configure({ adapter: new Adapter() });
 

@@ -44,7 +44,7 @@ const setAuthRedirectPath = (state, action) => {
   });
 };
 
-const authReducer =(state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
   switch(action.type) {
     case actionTypes.AUTHENTICATION_START: return authStart(state, action);
     case actionTypes.AUTHENTICATION_SUCCESS: return authSuccess(state, action);
