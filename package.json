@@ -29,8 +29,8 @@
     "test:jest-all": "react-scripts test --watchAll",
     "test:coverage": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject",
-    "lint:check": "eslint . --ext .js,.jsx,.test.js",
-    "lint:fix": "eslint --fix . --ext .js,.jsx,.test.js"
+    "lint:check": "eslint src/ --ext .js,.jsx,.test.js",
+    "lint:fix": "eslint --fix src/ --ext .js,.jsx,.test.js"
   },
   "eslintConfig": {
     "extends": "react-app"
