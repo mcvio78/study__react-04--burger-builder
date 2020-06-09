@@ -64,5 +64,6 @@
       "beforeColon": false,
       "afterColon": true
     }]
-  }
+  },
+  "ignorePatterns": [ "build/*", "node_modules/*" ]
 }
