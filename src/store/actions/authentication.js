@@ -38,10 +38,9 @@ export const logoutSucceed = () => {
 };
 
 const checkAuthExpiration = expiration => {
-  return dispatch => {
-    setTimeout(() => {
-      dispatch(logout());
-    }, expiration * 1000);
+  return {
+    type: actionTypes.CHECK_AUTH_EXPIRATION,
+    expiration: expiration
   };
 };
 
