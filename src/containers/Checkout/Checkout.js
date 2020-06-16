@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
+import CheckoutSummary
+  from '../../components/Order/CheckoutSummary/CheckoutSummary';
 import ContactData from './ContactData/ContactData';
 
 class Checkout extends Component {
@@ -16,10 +17,10 @@ class Checkout extends Component {
   };
 
   render() {
-    let summary = <Redirect to="/" />;
-    if(this.props.ings) {
+    let summary = <Redirect to="/"/>;
+    if (this.props.ings) {
       const purchasedRedirect = this.props.purchased
-        ? <Redirect to="/" />
+        ? <Redirect to="/"/>
         : null;
 
       summary = (

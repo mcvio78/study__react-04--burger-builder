@@ -57,14 +57,22 @@ const fetchOrderFail = (state, action) => {
 /* eslint-disable */
 const orderReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.PURCHASE_INIT: return purchaseInit(state, action);
-    case actionTypes.PURCHASE_BURGER_START: return purchaseStart(state,action);
-    case actionTypes.PURCHASE_BURGER_SUCCESS: return purchaseBurgerSuccess(state, action);
-    case actionTypes.PURCHASE_BURGER_FAIL: return purchaseBurgerFail(state, action);
-    case actionTypes.FETCH_ORDER_START: return fetchOrderStart(state, action);
-    case actionTypes.FETCH_ORDER_SUCCESS: return fetchOrderSuccess(state, action);
-    case actionTypes.FETCH_ORDER_FAIL: return fetchOrderFail(state, action);
-    default: return state;
+    case actionTypes.PURCHASE_INIT:
+      return purchaseInit(state, action);
+    case actionTypes.PURCHASE_BURGER_START:
+      return purchaseStart(state, action);
+    case actionTypes.PURCHASE_BURGER_SUCCESS:
+      return purchaseBurgerSuccess(state, action);
+    case actionTypes.PURCHASE_BURGER_FAIL:
+      return purchaseBurgerFail(state, action);
+    case actionTypes.FETCH_ORDER_START:
+      return fetchOrderStart(state, action);
+    case actionTypes.FETCH_ORDER_SUCCESS:
+      return fetchOrderSuccess(state, action);
+    case actionTypes.FETCH_ORDER_FAIL:
+      return fetchOrderFail(state, action);
+    default:
+      return state;
   }
 };
 /* eslint-enable */

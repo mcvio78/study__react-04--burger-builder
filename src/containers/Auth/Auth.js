@@ -43,10 +43,10 @@ class Auth extends Component {
       }
     },
     isSignUp: true
-  }
+  };
 
   componentDidMount() {
-    if(!this.props.buildBrg && this.props.redPath !== '/'){
+    if (!this.props.buildBrg && this.props.redPath !== '/') {
       this.props.onSetAuthRedirectPath();
     }
   }
@@ -54,7 +54,7 @@ class Auth extends Component {
   inputChangeHandler = (event, controlName) => {
 
     const updatedControls = updateObject(this.state.controls, {
-      [controlName]: updateObject(this.state.controls[controlName],{
+      [controlName]: updateObject(this.state.controls[controlName], {
         value: event.target.value,
         valid: checkValidity(
           event.target.value,
@@ -82,19 +82,19 @@ class Auth extends Component {
 
   onSubmitHandler = event => {
     event.preventDefault();
-    if(this.state.controls.email.valid && this.state.controls.email.valid){
+    if (this.state.controls.email.valid && this.state.controls.email.valid) {
       this.props.onAuthentication(
         this.state.controls.email.value,
         this.state.controls.password.value,
         this.state.isSignUp);
     }
-  }
+  };
 
   switchAuthModeHandler = () => {
     this.setState(prevState => {
       return { isSignUp: !prevState.isSignUp };
     });
-  }
+  };
 
 
   render() {
@@ -126,17 +126,17 @@ class Auth extends Component {
       ))
     );
 
-    if(this.props.load){
+    if (this.props.load) {
       form = <Spinner/>;
     }
 
     let errorMessage = null;
-    if(this.props.err) {
+    if (this.props.err) {
       errorMessage = <p>{this.props.err.response.data.error.message}</p>;
     }
 
     let redirectAuth = null;
-    if(this.props.isAuth){
+    if (this.props.isAuth) {
       redirectAuth = <Redirect to={this.props.redPath}/>;
     }
 
@@ -151,8 +151,8 @@ class Auth extends Component {
         <Button
           clicked={this.switchAuthModeHandler}
           btnType="Danger">{this.state.isSignUp ?
-            'SWITCH TO SIGN IN' :
-            'SWITCH TO SIGN UP'}</Button>
+          'SWITCH TO SIGN IN' :
+          'SWITCH TO SIGN UP'}</Button>
       </div>
     );
   }
@@ -172,7 +172,7 @@ const mapDispatchToProps = dispatch => {
   return {
     /* eslint-disable-next-line */
     onAuthentication: (email, password, isSignUp) => dispatch(actions.authentication(email, password, isSignUp)),
-    onSetAuthRedirectPath: ()=> dispatch(actions.setAuthRedirectPath('/'))
+    onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
   };
 };
 

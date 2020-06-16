@@ -6,7 +6,8 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import classes from './ContactData.module.css';
 import axios from '../../../axios-orders';
 import Input from '../../../components/UI/Input/Input';
-import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler.js';
+import withErrorHandler
+  from '../../../hoc/withErrorHandler/withErrorHandler.js';
 import * as actions from '../../../store/actions/index';
 import { updateObject, checkValidity } from '../../../shared/utility';
 
@@ -118,7 +119,7 @@ class ContactData extends Component {
   };
 
   inputChangeHandler = (event, id) => {
-    const updatedElement = updateObject(this.state.orderForm[id],{
+    const updatedElement = updateObject(this.state.orderForm[id], {
       value: event.target.value,
       valid: checkValidity(
         event.target.value,
@@ -127,7 +128,7 @@ class ContactData extends Component {
       touched: true
     });
 
-    const updatedForm = updateObject(this.state.orderForm,{
+    const updatedForm = updateObject(this.state.orderForm, {
       [id]: updatedElement
     });
 
@@ -178,17 +179,17 @@ class ContactData extends Component {
     let form = (
       <form onSubmit={this.orderHandler}>
         {formElementsArray.map(formElement => (
-          <Input
-            elementType={formElement.config.elementType}
-            elementConfig={formElement.config.elementConfig}
-            value={formElement.config.value}
-            key={formElement.id}
-            fieldName={formElement.id}
-            notValid={!formElement.config.valid}
-            shouldValidate={formElement.config.validation}
-            touched={formElement.config.touched}
-            changed={event => this.inputChangeHandler(event, formElement.id)}/>
-        )
+            <Input
+              elementType={formElement.config.elementType}
+              elementConfig={formElement.config.elementConfig}
+              value={formElement.config.value}
+              key={formElement.id}
+              fieldName={formElement.id}
+              notValid={!formElement.config.valid}
+              shouldValidate={formElement.config.validation}
+              touched={formElement.config.touched}
+              changed={event => this.inputChangeHandler(event, formElement.id)}/>
+          )
         )}
         <Button
           btnType="Success"

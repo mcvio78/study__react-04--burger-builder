@@ -6,5 +6,5 @@ export function* logoutSaga(action) {
   yield localStorage.removeItem('token');
   yield localStorage.removeItem('expirationDate');
   yield localStorage.removeItem('userId');
-  yield put(actions.logoutSucced());
+  yield put(actions.logoutSucceed());
 }

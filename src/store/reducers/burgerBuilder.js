@@ -66,11 +66,16 @@ const fetchIngredientFailed = (state, action) => { //eslint-disable-line
 
 const burgerBuilderReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.ADD_INGREDIENT: return addIngredient(state, action);
-    case actionTypes.REMOVE_INGREDIENT: return removeIngredient(state, action);
-    case actionTypes.SET_INGREDIENTS: return setIngredient(state, action);
-    case actionTypes.FETCH_INGREDIENTS_FAILED: return fetchIngredientFailed(state, action); //eslint-disable-line
-    default: return state;
+    case actionTypes.ADD_INGREDIENT:
+      return addIngredient(state, action);
+    case actionTypes.REMOVE_INGREDIENT:
+      return removeIngredient(state, action);
+    case actionTypes.SET_INGREDIENTS:
+      return setIngredient(state, action);
+    case actionTypes.FETCH_INGREDIENTS_FAILED:
+      return fetchIngredientFailed(state, action); //eslint-disable-line
+    default:
+      return state;
   }
 };
 

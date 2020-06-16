@@ -31,11 +31,11 @@ const fetchIngredientsFailed = () => {
 export const initIngredients = () => {
   return dispatch => {
     axios.get('ingredients.json')
-      .then(response => {
-        dispatch(setIngredients(response.data));
-      })
-      .catch(() => {
-        dispatch(fetchIngredientsFailed());
-      });
+    .then(response => {
+      dispatch(setIngredients(response.data));
+    })
+    .catch(() => {
+      dispatch(fetchIngredientsFailed());
+    });
   };
 };

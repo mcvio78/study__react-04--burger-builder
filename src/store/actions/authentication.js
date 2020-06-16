@@ -31,7 +31,7 @@ export const logout = () => {
   };
 };
 
-export const logoutSucced = () => {
+export const logoutSucceed = () => {
   return {
     type: actionTypes.AUTHENTICATION_LOGOUT
   };
@@ -62,20 +62,20 @@ export const authentication = (email, password, isSignUp) => {
       authData,
       { headers: { 'content-type': 'application/json' } }
     )
-      .then(response => {
-        console.log('response: ', response);
-        const expirationDate = new Date(new Date().getTime() + (response.data.expiresIn * 1000));/* eslint-disable-line */
-        localStorage.setItem('token', response.data.idToken);
-        localStorage.setItem('expirationDate', expirationDate);
-        localStorage.setItem('userId', response.data.localId);
+    .then(response => {
+      console.log('response: ', response);
+      const expirationDate = new Date(new Date().getTime() + (response.data.expiresIn * 1000));/* eslint-disable-line */
+      localStorage.setItem('token', response.data.idToken);
+      localStorage.setItem('expirationDate', expirationDate);
+      localStorage.setItem('userId', response.data.localId);
 
-        dispatch(authenticationSuccess(response.data.idToken, response.data.localId));/* eslint-disable-line */
-        dispatch(checkAuthExpiration(response.data.expiresIn));
-      })
-      .catch(error => {
-        console.log('error: ', error);
-        dispatch(authenticationFail(error));
-      });
+      dispatch(authenticationSuccess(response.data.idToken, response.data.localId));/* eslint-disable-line */
+      dispatch(checkAuthExpiration(response.data.expiresIn));
+    })
+    .catch(error => {
+      console.log('error: ', error);
+      dispatch(authenticationFail(error));
+    });
   };
 };
 
