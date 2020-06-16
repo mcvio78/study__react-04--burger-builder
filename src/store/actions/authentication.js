@@ -31,9 +31,15 @@ export const logout = () => {
   };
 };
 
+export const logoutSucced = () => {
+  return {
+    type: actionTypes.AUTHENTICATION_LOGOUT
+  };
+};
+
 const checkAuthExpiration = expiration => {
   return dispatch => {
-    setTimeout(()=> {
+    setTimeout(() => {
       dispatch(logout());
     }, expiration * 1000);
   };
@@ -48,7 +54,7 @@ export const authentication = (email, password, isSignUp) => {
       returnSecureToken: true
     };
     let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA1_i7dNm9G3TmTNnVTo4qp2mJ2wSsQSeo';
-    if(!isSignUp){
+    if (!isSignUp) {
       url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA1_i7dNm9G3TmTNnVTo4qp2mJ2wSsQSeo';
     }
     axios.post(
@@ -83,11 +89,11 @@ export const setAuthRedirectPath = path => {
 export const checkAuthState = () => {
   return dispatch => {
     const token = localStorage.getItem('token');
-    if(!token) {
+    if (!token) {
       dispatch(logout());
     } else {
       const expirationDate = new Date(localStorage.getItem('expirationDate'));
-      if(expirationDate <= new Date()) {
+      if (expirationDate <= new Date()) {
         dispatch(logout());
       } else {
         const userId = localStorage.getItem('userId');

@@ -11,9 +11,10 @@ import Logout from './containers/Auth/Logout/Logout';
 import * as actions from './store/actions/index';
 import asyncComponent from './hoc/asyncComponent/asyncComponent';
 /* eslint-disable */
-const AsyncAuthComponent = asyncComponent(() => import('./containers/Auth/Auth') );
-const AsyncCheckoutComponent = asyncComponent(() => import('./containers/Checkout/Checkout') );
-const AsyncOrdersComponent = asyncComponent(() => import('./containers/Orders/Orders') );
+const AsyncAuthComponent = asyncComponent(() => import('./containers/Auth/Auth'));
+const AsyncCheckoutComponent = asyncComponent(() => import('./containers/Checkout/Checkout'));
+const AsyncOrdersComponent = asyncComponent(() => import('./containers/Orders/Orders'));
+
 /* eslint-enable */
 export class App extends Component {
 
@@ -38,7 +39,7 @@ export class App extends Component {
       </Switch>
     );
 
-    if(this.props.isAuth){
+    if (this.props.isAuth) {
       routes = (
         <Switch>
           <Route path="/checkout" component={AsyncCheckoutComponent}/>
