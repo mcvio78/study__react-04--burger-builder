@@ -1,13 +1,12 @@
 import * as actionTypes from './actionTypes';
-import axios from 'axios';
 
-const authenticationStart = () => {
+export const authenticationStart = () => {
   return {
     type: actionTypes.AUTHENTICATION_START
   };
 };
 
-const authenticationSuccess = (token, userId) => {
+export const authenticationSuccess = (token, userId) => {
   return {
     type: actionTypes.AUTHENTICATION_SUCCESS,
     token: token,
@@ -15,7 +14,7 @@ const authenticationSuccess = (token, userId) => {
   };
 };
 
-const authenticationFail = err => {
+export const authenticationFail = err => {
   return {
     type: actionTypes.AUTHENTICATION_FAIL,
     error: err
@@ -23,9 +22,6 @@ const authenticationFail = err => {
 };
 
 export const logout = () => {
-  // localStorage.removeItem('token');
-  // localStorage.removeItem('expirationDate');
-  // localStorage.removeItem('userId');
   return {
     type: actionTypes.AUTHENTICATION_INIT_LOGOUT
   };
@@ -37,7 +33,7 @@ export const logoutSucceed = () => {
   };
 };
 
-const checkAuthExpiration = expiration => {
+export const checkAuthExpiration = expiration => {
   return {
     type: actionTypes.CHECK_AUTH_EXPIRATION,
     expiration: expiration
@@ -45,37 +41,44 @@ const checkAuthExpiration = expiration => {
 };
 
 export const authentication = (email, password, isSignUp) => {
-  return dispatch => {
-    dispatch(authenticationStart());
-    const authData = {
-      email: email,
-      password: password,
-      returnSecureToken: true
-    };
-    let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA1_i7dNm9G3TmTNnVTo4qp2mJ2wSsQSeo';
-    if (!isSignUp) {
-      url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA1_i7dNm9G3TmTNnVTo4qp2mJ2wSsQSeo';
-    }
-    axios.post(
-      url,
-      authData,
-      { headers: { 'content-type': 'application/json' } }
-    )
-    .then(response => {
-      console.log('response: ', response);
-      const expirationDate = new Date(new Date().getTime() + (response.data.expiresIn * 1000));/* eslint-disable-line */
-      localStorage.setItem('token', response.data.idToken);
-      localStorage.setItem('expirationDate', expirationDate);
-      localStorage.setItem('userId', response.data.localId);
 
-      dispatch(authenticationSuccess(response.data.idToken, response.data.localId));/* eslint-disable-line */
-      dispatch(checkAuthExpiration(response.data.expiresIn));
-    })
-    .catch(error => {
-      console.log('error: ', error);
-      dispatch(authenticationFail(error));
-    });
+  return {
+    type: actionTypes.AUTHENTICATION_USER,
+    email: email,
+    password: password,
+    isSignUp: isSignUp
   };
+  // return dispatch => {
+  //   dispatch(authenticationStart());
+  //   const authData = {
+  //     email: email,
+  //     password: password,
+  //     returnSecureToken: true
+  //   };
+  //   let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA1_i7dNm9G3TmTNnVTo4qp2mJ2wSsQSeo';
+  //   if (!isSignUp) {
+  //     url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA1_i7dNm9G3TmTNnVTo4qp2mJ2wSsQSeo';
+  //   }
+  //   axios.post(
+  //     url,
+  //     authData,
+  //     { headers: { 'content-type': 'application/json' } }
+  //   )
+  //   .then(response => {
+  //     // console.log('response: ', response);
+  //     const expirationDate = new Date(new Date().getTime() + (response.data.expiresIn * 1000));/* eslint-disable-line */
+  //     localStorage.setItem('token', response.data.idToken);
+  //     localStorage.setItem('expirationDate', expirationDate);
+  //     localStorage.setItem('userId', response.data.localId);
+  //
+  //     dispatch(authenticationSuccess(response.data.idToken, response.data.localId));/* eslint-disable-line */
+  //     dispatch(checkAuthExpiration(response.data.expiresIn));
+  //   })
+  //   .catch(error => {
+  //     // console.log('error: ', error);
+  //     dispatch(authenticationFail(error));
+  //   });
+  // };
 };
 
 export const setAuthRedirectPath = path => {
