@@ -5,7 +5,7 @@ import createSagaMiddleware from 'redux-saga';
 
 import { rootReducer } from './store/reducers/rootReducer';
 import { loggerMiddleware } from './store/middleware/loggerMiddleware';
-import { watchAuth, watchOrder } from './store/sagas/index';
+import { watchAuth, watchOrder, watchBurgerBuilder } from './store/sagas/index';
 
 export default function configureStore(preloadedState) {
   const sagaMiddleware = createSagaMiddleware();
@@ -24,6 +24,7 @@ export default function configureStore(preloadedState) {
 
   sagaMiddleware.run(watchAuth);
   sagaMiddleware.run(watchOrder);
+  sagaMiddleware.run(watchBurgerBuilder);
 
   return store;
 }
