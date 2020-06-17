@@ -29,11 +29,7 @@ export function* authenticationUserSaga(action) {
     url =
       'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA1_i7dNm9G3TmTNnVTo4qp2mJ2wSsQSeo';
   }
-  const response = yield axios.post(
-    url,
-    authData,
-    { headers: { 'content-type': 'application/json' } }
-  )
+  const response = yield axios.post(url, authData, { headers: { 'content-type': 'application/json' } })
   try {
     const expirationDate = yield new Date(new Date().getTime() + (response.data.expiresIn * 1000));
     yield localStorage.setItem('token', response.data.idToken);

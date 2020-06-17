@@ -5,12 +5,22 @@ import {
   authenticationUserSaga,
   checkAuthExpirationSaga,
   checkAuthStateSaga,
-  logoutSaga
+  logoutSaga,
 } from './auth';
 
+import {
+  purchaseBurgerSaga,
+  fetchOrdersSaga
+} from './order';
+
 export function* watchAuth() {
-  yield takeEvery(actionTypes.AUTHENTICATION_INIT_LOGOUT, logoutSaga);
+  yield takeEvery(actionTypes.AUTHENTICATION_LOGOUT_INIT, logoutSaga);
   yield takeEvery(actionTypes.CHECK_AUTH_EXPIRATION, checkAuthExpirationSaga);
   yield takeEvery(actionTypes.AUTHENTICATION_USER, authenticationUserSaga);
   yield takeEvery(actionTypes.AUTHENTICATION_CHECKOUT, checkAuthStateSaga)
+}
+
+export function* watchOrder() {
+  yield takeEvery(actionTypes.PURCHASE_BURGER_INIT, purchaseBurgerSaga)
+  yield takeEvery(actionTypes.FETCH_ORDER_INIT, fetchOrdersSaga)
 }

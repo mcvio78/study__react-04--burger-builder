@@ -23,7 +23,7 @@ export const authenticationFail = err => {
 
 export const logout = () => {
   return {
-    type: actionTypes.AUTHENTICATION_INIT_LOGOUT
+    type: actionTypes.AUTHENTICATION_LOGOUT_INIT
   };
 };
 
