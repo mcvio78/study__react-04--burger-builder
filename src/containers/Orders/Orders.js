@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import Order from '../../components/Order/Order';
@@ -7,29 +8,53 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import * as actions from '../../store/actions/index';
 
-class Orders extends Component {
+// class Orders extends Component {
+//
+//   componentDidMount() {
+//     this.props.onFetchOrders(this.props.tkn, this.props.uId);
+//   }
+//
+//   render() {
+//     let orders = (<Spinner/>);
+//     if (!this.props.load) {
+//       orders = this.props.ords.map(order => (
+//         <Order
+//           key={new Date().getTime()}
+//           ingredients={order.ingredients}
+//           price={+order.price}/>
+//       ));
+//     }
+//
+//     return (
+//       <div>
+//         {orders}
+//       </div>
+//     );
+//   }
+// }
 
-  componentDidMount() {
-    this.props.onFetchOrders(this.props.tkn, this.props.uId);
+const Orders = props => {
+  const { onFetchOrders, tkn, uId } = props;
+
+  useEffect(() => {
+    onFetchOrders(tkn, uId);
+  }, [onFetchOrders, tkn, uId ])
+
+  let orders = (<Spinner/>);
+  if (!props.load) {
+    orders = props.ords.map(order => (
+      <Order
+        key={new Date().getTime()}
+        ingredients={order.ingredients}
+        price={+order.price}/>
+    ));
   }
 
-  render() {
-    let orders = (<Spinner/>);
-    if (!this.props.load) {
-      orders = this.props.ords.map(order => (
-        <Order
-          key={new Date().getTime()}
-          ingredients={order.ingredients}
-          price={+order.price}/>
-      ));
-    }
-
-    return (
-      <div>
-        {orders}
-      </div>
-    );
-  }
+  return (
+    <div>
+      {orders}
+    </div>
+  );
 }
 
 const mapStateToProps = state => {
@@ -46,6 +71,6 @@ const mapDispatchToProps = dispatch => {
     onFetchOrders: (token, userId) => dispatch(actions.fetchOrders(token, userId))
   };
 };
-/* eslint-disable-next-line */
+
 export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(Orders, axios));
 

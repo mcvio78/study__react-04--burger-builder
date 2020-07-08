@@ -57,7 +57,7 @@ const setIngredient = (state, action) => {
   return updateObject(state, stateUpdatedProperties);
 };
 
-const fetchIngredientFailed = (state, action) => { //eslint-disable-line
+const fetchIngredientFailed = state => {
   const stateUpdatedProperties = {
     error: true
   };
@@ -73,7 +73,7 @@ const burgerBuilderReducer = (state = initialState, action) => {
     case actionTypes.SET_INGREDIENTS:
       return setIngredient(state, action);
     case actionTypes.FETCH_INGREDIENTS_FAILED:
-      return fetchIngredientFailed(state, action); //eslint-disable-line
+      return fetchIngredientFailed(state, action);
     default:
       return state;
   }
