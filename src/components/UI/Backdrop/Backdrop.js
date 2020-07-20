@@ -1,10 +1,19 @@
 import React from 'react';
 
-import classes from './Backdrop.module.css';
+import classes from './Backdrop.module.scss';
 
 const backdrop = props => (
   props.show
-    ? <div className={classes.Backdrop} onClick={props.clicked}></div>
+    ? (
+      <div
+        className={classes.Backdrop}
+        onClick={props.clicked}
+        role="button"
+        aria-label="Close Notification"
+        tabIndex={0}
+        onKeyDown={props.clicked}
+    />
+    )
     : null
 );
 

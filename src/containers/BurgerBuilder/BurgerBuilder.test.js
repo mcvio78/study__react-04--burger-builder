@@ -12,7 +12,8 @@ describe('<BurgerBuilder />', () => {
 
   beforeEach(() => {
     wrapper = shallow(<BurgerBuilder onInitIngredients={() => {
-    }}/>);
+    }}
+    />);
   });
 
   it('should have a <BuildControls /> when receiving props.ings', () => {

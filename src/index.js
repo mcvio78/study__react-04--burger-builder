@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import './index.css';
+import './index.scss';
+import 'normalize.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import configureStore from './configureStore';
@@ -14,7 +15,7 @@ const app = (
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App/>
+        <App />
       </BrowserRouter>
     </Provider>
   </React.StrictMode>

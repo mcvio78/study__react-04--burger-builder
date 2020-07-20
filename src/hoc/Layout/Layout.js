@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import Auxiliary from '../Auxiliary/Auxiliary';
-import classes from './Layout.module.css';
+import classes from './Layout.module.scss';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 
@@ -51,25 +51,25 @@ const Layout = props => {
     setShowSideDrawer(!showSideDrawer);
   };
 
-    return (
-      <Auxiliary>
-        <Toolbar
-          drawerToggleClicked={sideDrawerToggleHandler}
-          isAuth={props.isAuthenticated}/>
-        <SideDrawer
-          closed={sideDrawerCloseHandler}
-          open={showSideDrawer}
-          isAuth={props.isAuthenticated}/>
-        <main className={classes.Content}>
-          {props.children}
-        </main>
-      </Auxiliary>
-    );
-}
+  return (
+    <Auxiliary>
+      <Toolbar
+        drawerToggleClicked={sideDrawerToggleHandler}
+        isAuth={props.isAuthenticated} />
+      <SideDrawer
+        closed={sideDrawerCloseHandler}
+        open={showSideDrawer}
+        isAuth={props.isAuthenticated} />
+      <main className={classes.Content}>
+        {props.children}
+      </main>
+    </Auxiliary>
+  );
+};
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.token !== null
+    isAuthenticated: state.auth.token !== null,
   };
 };
 

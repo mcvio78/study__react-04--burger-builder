@@ -1,0 +1,16 @@
+{
+  "extends": "stylelint-config-sass-guidelines",
+  "rules": {
+    "property-no-vendor-prefix": null,
+    "at-rule-no-vendor-prefix": null,
+    "selector-class-pattern": null,
+    "max-nesting-depth": [3, {
+      "ignore": ["at-rules-without-declaration-blocks"]
+    }],
+    "order/properties-alphabetical-order": false,
+    "declaration-property-value-blacklist": {
+      "/^border/": ["border", "border-top", "border-right", "border-bottom", "border-left"]
+    },
+    "selector-no-qualifying-type": null
+  }
+}

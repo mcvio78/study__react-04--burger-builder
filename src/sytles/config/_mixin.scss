@@ -1,0 +1,25 @@
+// BurgerIngredient
+@mixin seeds($width, $height, $left, $top, $deg, $sh-v1, $sh-v2, $sh-color) {
+  background-color: #fff;
+  border-radius: 40%;
+  box-shadow: inset $sh-v1 $sh-v2 $sh-color;
+  height: $height;
+  left: $left;
+  position: absolute;
+  top: $top;
+  transform: rotate($deg);
+  width: $width;
+
+  &::before,
+  &::after {
+    content: '';
+  }
+}
+
+@mixin ingredient($col-1, $col-2, $bor-rad, $height, $width) {
+  background: linear-gradient($col-1, $col-2);
+  border-radius: $bor-rad;
+  height: $height;
+  margin: 2% auto;
+  width: $width;
+}

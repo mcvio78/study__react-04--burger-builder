@@ -1,20 +1,27 @@
 import React from 'react';
 
-import classes from './Order.module.css';
+import classes from './Order.module.scss';
 
 const order = props => {
   const ingredients = [];
 
-  for (let ingredientName in props.ingredients) {
-    if (props.ingredients.hasOwnProperty(ingredientName)) { /* eslint-disable-line */
-      ingredients.push(
-        {
-          name: ingredientName,
-          amount: props.ingredients[ingredientName]
-        }
-      );
-    }
-  }
+  // for (const ingredientName in props.ingredients) { // Old syntax
+  //   ingredients.push(
+  //     {
+  //       name: ingredientName,
+  //       amount: props.ingredients[ingredientName],
+  //     },
+  //   );
+  // }
+
+  Object.keys(props.ingredients).forEach(ingredientName => { // New syntax
+    ingredients.push(
+      {
+        name: ingredientName,
+        amount: props.ingredients[ingredientName],
+      },
+    );
+  });
 
   const ingredientOut = ingredients.map(ing => {
     return (
@@ -24,7 +31,7 @@ const order = props => {
           display: 'inline-block',
           margin: '0 8px',
           border: '1px solid #CCC',
-          padding: '5px'
+          padding: '5px',
         }}
         key={ing.name}>{ing.name}({ing.amount})</span>
     );

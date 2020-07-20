@@ -1,0 +1,141 @@
+@import '../../../sytles/config';
+
+//.basic_seed {
+//  background-color: white;
+//  position: absolute;
+//  border-radius: 40%;
+//}
+
+//.content {
+//  content: '';
+//}
+
+
+
+.BreadBottom {
+  background: linear-gradient($sea-buckthorn, $tree-poppy);
+  border-radius: 0 0 30px 30px;
+  box-shadow: inset -15px 0 $rust;
+  height: 13%;
+  margin: 2% auto;
+  width: 80%;
+}
+
+.BreadTop {
+  background: linear-gradient($chocolate, $tree-poppy);
+  border-radius: 50% 50% 0 0;
+  box-shadow: inset -15px 0 $rust;
+  height: 20%;
+  margin: 2% auto;
+  position: relative;
+  width: 80%;
+}
+
+.Seeds1 {
+  @include seeds(10%, 15%, 30%, 50%, -20deg, -2px, -3px, $very-light-grey);
+
+  //width: 10%;
+  //height: 15%;
+  //// position: absolute;
+  //// background-color: white;
+  //left: 30%;
+  //top: 50%;
+  //// border-radius: 40%;
+  //transform: rotate(-20deg);
+  //box-shadow: inset -2px -3px $seeds1_shadow;
+
+  &::after {
+    @include seeds(100%, 100%, -170%, -260%, 60deg, -1px, 2px, $very-light-grey);
+  }
+
+  &::before {
+    @include seeds(100%, 100%, 180%, -50%, 60deg, -1px, -3px, $very-light-grey);
+  }
+}
+
+//.Seeds1:after {
+//  content: "";
+//  width: 100%;
+//  height: 100%;
+//  position: absolute;
+//  background-color: white;
+//  left: -170%;
+//  top: -260%;
+//  border-radius: 40%;
+//  transform: rotate(60deg);
+//  box-shadow: inset -1px 2px #c9c9c9;
+//}
+
+//.Seeds1:before {
+//  content: "";
+//  width: 100%;
+//  height: 100%;
+//  position: absolute;
+//  background-color: white;
+//  left: 180%;
+//  top: -50%;
+//  border-radius: 40%;
+//  transform: rotate(60deg);
+//  box-shadow: inset -1px -3px #c9c9c9;
+//}
+
+.Seeds2 {
+  @include seeds(10%, 15%, 64%, 50%, 10deg, -3px, 0, $very-light-grey);
+
+  &::before {
+    @include seeds(100%, 100%, 150%, -130%, 90deg, 1px, 3px, $very-light-grey);
+  }
+}
+
+//.Seeds2:before {
+//  content: "";
+//  width: 100%;
+//  height: 100%;
+//  position: absolute;
+//  background-color: white;
+//  left: 150%;
+//  top: -130%;
+//  border-radius: 40%;
+//  transform: rotate(90deg);
+//  box-shadow: inset 1px 3px #c9c9c9;
+//}
+
+
+.Meat {
+  @include ingredient($saddle-brown, $maroon, 15px, 8%, 80%);
+
+  //background: linear-gradient($saddle-brown, $maroon);
+  //border-radius: 15px;
+  //height: 8%;
+  //margin: 2% auto;
+  //width: 80%;
+}
+
+.Cheese {
+  @include ingredient($tangerine-yellow, $barberry, 20px, 4.5%, 90%);
+
+  //background: linear-gradient($tangerine-yellow, $barberry);
+  //border-radius: 20px;
+  //height: 4.5%;
+  //margin: 2% auto;
+  //width: 90%;
+}
+
+.Salad {
+  @include ingredient($forest-green, $atlantis, 20px, 7%, 85%);
+
+  //background: linear-gradient($forest-green, $atlantis);
+  //border-radius: 20px;
+  //height: 7%;
+  //margin: 2% auto;
+  //width: 85%;
+}
+
+.Bacon {
+  @include ingredient($harley-davidson-orange, $ecstasy, 0, 3%, 80%);
+
+  //background: linear-gradient($harley-davidson-orange, $ecstasy);
+  //height: 3%;
+  //margin: 2% auto;
+  //width: 80%;
+}

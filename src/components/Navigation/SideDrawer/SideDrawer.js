@@ -1,6 +1,6 @@
 import React from 'react';
 
-import classes from './SideDrawer.module.css';
+import classes from './SideDrawer.module.scss';
 import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import Auxiliary from '../../../hoc/Auxiliary/Auxiliary';
@@ -20,13 +20,19 @@ const sideDrawer = props => {
     <Auxiliary>
       <Backdrop
         clicked={props.closed}
-        show={props.open}/>
-      <div className={attachedClasses.join(' ')} onClick={props.closed}>
+        show={props.open} />
+      <div
+        role="button"
+        tabIndex={0}
+        onKeyDown={props.closed}
+        className={attachedClasses.join(' ')}
+        onClick={props.closed}
+      >
         <div className={classes.Logo}>
-          <Logo/>
+          <Logo />
         </div>
         <nav>
-          <NavigationItems isAuthenticated={props.isAuth}/>
+          <NavigationItems isAuthenticated={props.isAuth} />
         </nav>
       </div>
     </Auxiliary>

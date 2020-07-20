@@ -1,0 +1,17 @@
+@import '../../sytles/config';
+
+.Logo {
+  background-color: $white;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 8px;
+
+  img {
+    height: 100%;
+  }
+}
+
+/*.Logo img {*/
+/*  height: 100%;*/
+/*}*/
