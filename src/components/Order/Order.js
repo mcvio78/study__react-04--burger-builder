@@ -5,16 +5,7 @@ import classes from './Order.module.scss';
 const order = props => {
   const ingredients = [];
 
-  // for (const ingredientName in props.ingredients) { // Old syntax
-  //   ingredients.push(
-  //     {
-  //       name: ingredientName,
-  //       amount: props.ingredients[ingredientName],
-  //     },
-  //   );
-  // }
-
-  Object.keys(props.ingredients).forEach(ingredientName => { // New syntax
+  Object.keys(props.ingredients).forEach(ingredientName => {
     ingredients.push(
       {
         name: ingredientName,

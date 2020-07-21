@@ -1,8 +1,7 @@
-import { put } from 'redux-saga/effects';
-import { delay } from 'redux-saga/effects';
+import { put, delay } from 'redux-saga/effects';
 
-import * as actions from '../actions/index';
 import axios from 'axios';
+import * as actions from '../actions/index';
 
 export function* logoutSaga() {
   yield localStorage.removeItem('token');
@@ -13,23 +12,21 @@ export function* logoutSaga() {
 
 export function* checkAuthExpirationSaga(action) {
   yield delay(action.expiration * 1000);
-  yield put(actions.logout())
+  yield put(actions.logout());
 }
 
 export function* authenticationUserSaga(action) {
-  yield put(actions.authenticationStart())
+  yield put(actions.authenticationStart());
   const authData = {
     email: action.email,
     password: action.password,
-    returnSecureToken: true
+    returnSecureToken: true,
   };
-  let url =
-    'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA1_i7dNm9G3TmTNnVTo4qp2mJ2wSsQSeo';
+  let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA1_i7dNm9G3TmTNnVTo4qp2mJ2wSsQSeo';
   if (!action.isSignUp) {
-    url =
-      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA1_i7dNm9G3TmTNnVTo4qp2mJ2wSsQSeo';
+    url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA1_i7dNm9G3TmTNnVTo4qp2mJ2wSsQSeo';
   }
-  const response = yield axios.post(url, authData, { headers: { 'content-type': 'application/json' } })
+  const response = yield axios.post(url, authData, { headers: { 'content-type': 'application/json' } });
   try {
     const expirationDate = yield new Date(new Date().getTime() + (response.data.expiresIn * 1000));
     yield localStorage.setItem('token', response.data.idToken);
@@ -53,8 +50,9 @@ export function* checkAuthStateSaga() {
     } else {
       const userId = yield localStorage.getItem('userId');
       yield put(actions.authenticationSuccess(token, userId));
-      yield put(actions.checkAuthExpiration((expirationDate.getTime() - new Date().getTime()) / 1000));
+      yield put(actions.checkAuthExpiration(
+        (expirationDate.getTime() - new Date().getTime()) / 1000,
+      ));
     }
   }
-
 }

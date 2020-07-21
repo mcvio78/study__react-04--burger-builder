@@ -7,12 +7,11 @@ import NavigationItem from '../NavigationItem/NavigationItem';
 
 configure({ adapter: new Adapter() });
 
-/* eslint-disable */
 describe('<NavigationItems />', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<NavigationItems/>);
+    wrapper = shallow(<NavigationItems />);
   });
 
   test('should render two <NavigationItem /> elements if not authenticated', () => {
@@ -30,7 +29,4 @@ describe('<NavigationItems />', () => {
     expect(wrapper.contains(<NavigationItem
       link="/logout">Logout</NavigationItem>)).toEqual(true);
   });
-
 });
-/* eslint-enable */
-

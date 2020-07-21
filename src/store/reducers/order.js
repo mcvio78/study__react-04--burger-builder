@@ -5,14 +5,14 @@ const initialState = {
   orders: [],
   loading: false,
   error: false,
-  purchased: false
+  purchased: false,
 };
 
-const purchaseInit = (state, action) => {
+const purchaseInit = state => {
   return updateObject(state, { purchased: false });
 };
 
-const purchaseStart = (state, action) => {
+const purchaseStart = state => {
   return updateObject(state, { loading: true });
 };
 
@@ -22,35 +22,35 @@ const purchaseBurgerSuccess = (state, action) => {
   const stateUpdatedProperties = {
     loading: false,
     orders: state.orders.concat(newOrder),
-    purchased: true
+    purchased: true,
   };
   return updateObject(state, stateUpdatedProperties);
 };
 
-const purchaseBurgerFail = (state, action) => {
+const purchaseBurgerFail = state => {
   const stateUpdatedProperties = {
     loading: false,
-    error: true
+    error: true,
   };
   return updateObject(state, stateUpdatedProperties);
 };
 
-const fetchOrderStart = (state, action) => {
+const fetchOrderStart = state => {
   return updateObject(state, { loading: true });
 };
 
 const fetchOrderSuccess = (state, action) => {
   const stateUpdatedProperties = {
     orders: action.orders,
-    loading: false
+    loading: false,
   };
   return updateObject(state, stateUpdatedProperties);
 };
 
-const fetchOrderFail = (state, action) => {
+const fetchOrderFail = state => {
   const stateUpdatedProperties = {
     error: true,
-    loading: false
+    loading: false,
   };
   return updateObject(state, stateUpdatedProperties);
 };

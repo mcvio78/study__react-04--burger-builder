@@ -2,63 +2,62 @@ import * as actionTypes from './actionTypes';
 
 export const authenticationStart = () => {
   return {
-    type: actionTypes.AUTHENTICATION_START
+    type: actionTypes.AUTHENTICATION_START,
   };
 };
 
 export const authenticationSuccess = (token, userId) => {
   return {
     type: actionTypes.AUTHENTICATION_SUCCESS,
-    token: token,
-    userId: userId
+    token,
+    userId,
   };
 };
 
 export const authenticationFail = err => {
   return {
     type: actionTypes.AUTHENTICATION_FAIL,
-    error: err
+    error: err,
   };
 };
 
 export const logout = () => {
   return {
-    type: actionTypes.AUTHENTICATION_LOGOUT_INIT
+    type: actionTypes.AUTHENTICATION_LOGOUT_INIT,
   };
 };
 
 export const logoutSucceed = () => {
   return {
-    type: actionTypes.AUTHENTICATION_LOGOUT
+    type: actionTypes.AUTHENTICATION_LOGOUT,
   };
 };
 
 export const checkAuthExpiration = expiration => {
   return {
     type: actionTypes.CHECK_AUTH_EXPIRATION,
-    expiration: expiration
+    expiration,
   };
 };
 
 export const authentication = (email, password, isSignUp) => {
-
   return {
     type: actionTypes.AUTHENTICATION_USER,
-    email: email,
-    password: password,
-    isSignUp: isSignUp
+    email,
+    password,
+    isSignUp,
   };
 };
 
 export const setAuthRedirectPath = path => {
   return {
     type: actionTypes.SET_AUTH_REDIRECT_PATH,
-    path: path
+    path,
   };
 };
 
 export const checkAuthState = () => {
   return {
-    type: actionTypes.AUTHENTICATION_CHECKOUT
-  }
+    type: actionTypes.AUTHENTICATION_CHECKOUT,
+  };
 };

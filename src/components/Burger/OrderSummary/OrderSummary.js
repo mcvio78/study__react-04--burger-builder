@@ -1,8 +1,8 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
 import Auxiliary from '../../../hoc/Auxiliary/Auxiliary';
 import Button from '../../UI/Button/Button';
-import PropTypes from 'prop-types';
 
 const orderSummary = props => {
   const ingredientSummary = Object.keys(props.ingredients).map(igKey => {
@@ -10,7 +10,7 @@ const orderSummary = props => {
       <li key={igKey}>
         <span
           style={{
-            textTransform: 'capitalize'
+            textTransform: 'capitalize',
           }}>{igKey}: {props.ingredients[igKey]}</span>
       </li>
     );
@@ -36,8 +36,8 @@ const orderSummary = props => {
 };
 
 orderSummary.propTypes = {
-  clicked: PropTypes.func,
-  price: PropTypes.number
+  clicked: PropTypes.func, /* eslint-disable-line */
+  price: PropTypes.number, /* eslint-disable-line */
 };
 
 export default orderSummary;

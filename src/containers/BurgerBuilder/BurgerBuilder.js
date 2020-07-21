@@ -12,48 +12,37 @@ import * as actions from '../../store/actions/index';
 import axios from '../../axios-orders';
 
 export const BurgerBuilder = props => {
-  const [purchasing, setPurchasing] = useState(false)
-
-
+  const [purchasing, setPurchasing] = useState(false);
   const ings = useSelector(state => {
-    return state.brgBld.ingredients
+    return state.brgBld.ingredients;
   });
 
   const tot = useSelector(state => {
-    return state.brgBld.totalPrice
+    return state.brgBld.totalPrice;
   });
 
   const err = useSelector(state => {
-    return state.brgBld.error
+    return state.brgBld.error;
   });
 
   const isAuth = useSelector(state => {
-    return state.auth.token !== null
+    return state.auth.token !== null;
   });
 
+  const dispatch = useDispatch();
 
-  const dispatch = useDispatch()
+  const onIngredientAdded = ingName => dispatch(actions.addIngredient(ingName));
 
-  const onIngredientAdded = ingName =>
-    dispatch(actions.addIngredient(ingName));
+  const onIngredientRemoved = ingName => dispatch(actions.removeIngredient(ingName));
 
-  const onIngredientRemoved = ingName =>
-    dispatch(actions.removeIngredient(ingName));
+  const onInitIngredients = useCallback(() => dispatch(actions.initIngredients()), [dispatch]);
 
-  const onInitIngredients = useCallback(() =>
-    dispatch(actions.initIngredients()), [dispatch]);
+  const onInit = () => dispatch(actions.purchaseInit());
 
-  const onInit = () =>
-    dispatch(actions.purchaseInit());
-
-  const onSetAuthRedirectPath = path =>
-    dispatch(actions.setAuthRedirectPath(path));
-
-
+  const onSetAuthRedirectPath = path => dispatch(actions.setAuthRedirectPath(path));
   useEffect(() => {
     onInitIngredients();
-  }, [onInitIngredients])
-
+  }, [onInitIngredients]);
 
   const updatePurchasedState = ingredients => {
     const sum = Object.keys(ingredients).map(igKey => {
@@ -83,51 +72,53 @@ export const BurgerBuilder = props => {
   };
 
   const disableInfo = {
-    ...ings
+    ...ings,
   };
 
-  for (let key in disableInfo) {
+  Object.keys(disableInfo).forEach(key => {
     disableInfo[key] = disableInfo[key] <= 0;
-  }
+  });
 
   let orderSummary = null;
 
   let burger = err
-    ? <p style={{ 'textAlign': 'center' }}>Ingredients can't be loaded!</p>
-    : <Spinner/>;
+    ? <p style={{ textAlign: 'center' }}>Ingredients can`&apos;`t be loaded!</p>
+    : <Spinner />;
 
   if (ings) {
-    burger =
-      (
-        <Auxiliary>
-          <Burger ingredients={ings}/>,
-          <BuildControls
-            ingredientAdded={onIngredientAdded}
-            ingredientRemoved={onIngredientRemoved}
-            disableInfo={disableInfo}
-            price={tot}
-            ordered={purchaseHandler}
-            purchasable={updatePurchasedState(ings)}
-            isAuth={isAuth}/>
-        </Auxiliary>
-      );
+    burger = (
+      <Auxiliary>
+        <Burger ingredients={ings} />,
+        <BuildControls
+          ingredientAdded={onIngredientAdded}
+          ingredientRemoved={onIngredientRemoved}
+          disableInfo={disableInfo}
+          price={tot}
+          ordered={purchaseHandler}
+          purchasable={updatePurchasedState(ings)}
+          isAuth={isAuth} />
+      </Auxiliary>
+    );
 
-    orderSummary = <OrderSummary
-      ingredients={ings}
-      purchaseCancelled={purchaseCancelHandler}
-      purchaseContinued={purchaseContinueHandler}
-      price={tot}/>;
+    orderSummary = (
+      <OrderSummary
+        ingredients={ings}
+        purchaseCancelled={purchaseCancelHandler}
+        purchaseContinued={purchaseContinueHandler}
+        price={tot} />
+    );
   }
 
   return (
     <Auxiliary>
       <Modal
-        show={purchasing} closeModal={purchaseCancelHandler}>
+        show={purchasing}
+        closeModal={purchaseCancelHandler}>
         {orderSummary}
       </Modal>
       {burger}
     </Auxiliary>
   );
-}
+};
 
 export default withErrorHandler(BurgerBuilder, axios);

@@ -3,13 +3,13 @@ export {
   removeIngredient,
   initIngredients,
   setIngredients,
-  fetchIngredientsFailed
+  fetchIngredientsFailed,
 } from './burgerBuilder';
 
 export {
   purchaseBurger,
   purchaseInit,
-  fetchOrders
+  fetchOrders,
 } from './order';
 
 export {
@@ -21,5 +21,5 @@ export {
   authenticationStart,
   authenticationSuccess,
   authenticationFail,
-  checkAuthExpiration
+  checkAuthExpiration,
 } from './authentication';

@@ -28,11 +28,6 @@
   }
 }
 
-//.InputElement:focus {
-//  outline: none;
-//  background-color: #ccc;
-//}
-
 .Invalid {
   border: 2px solid $red;
   background-color: $rose-bud;
@@ -46,7 +41,3 @@
     text-transform: capitalize;
   }
 }
-
-//.ValidationError span {
-//  text-transform: capitalize;
-//}
