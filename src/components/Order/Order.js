@@ -5,14 +5,15 @@ import classes from './Order.module.scss';
 const order = props => {
   const ingredients = [];
 
-  Object.keys(props.ingredients).forEach(ingredientName => {
-    ingredients.push(
-      {
-        name: ingredientName,
-        amount: props.ingredients[ingredientName],
-      },
-    );
-  });
+  Object.keys(props.ingredients)
+    .forEach(ingredientName => {
+      ingredients.push(
+        {
+          name: ingredientName,
+          amount: props.ingredients[ingredientName],
+        },
+      );
+    });
 
   const ingredientOut = ingredients.map(ing => {
     return (

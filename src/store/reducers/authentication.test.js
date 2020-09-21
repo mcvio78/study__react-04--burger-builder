@@ -2,26 +2,26 @@ import authReducer from './authentication';
 import * as actionTypes from '../actions/actionTypes';
 
 describe('auth reducer', () => {
-
   it('should return the initial state', () => {
     expect(authReducer(undefined, {})).toEqual({
       token: null,
       userId: null,
       error: null,
       loading: null,
-      authRedirectPath: '/'
+      authRedirectPath: '/',
     });
   });
 
   it('authStart should error: null loading=true', () => {
     expect(authReducer(
       undefined,
-      { type: actionTypes.AUTHENTICATION_START })).toEqual({
+      { type: actionTypes.AUTHENTICATION_START },
+    )).toEqual({
       token: null,
       userId: null,
       error: null,
       loading: true,
-      authRedirectPath: '/'
+      authRedirectPath: '/',
     });
   });
 
@@ -32,18 +32,19 @@ describe('auth reducer', () => {
         userId: null,
         error: null,
         loading: null,
-        authRedirectPath: '/'
+        authRedirectPath: '/',
       },
       {
         type: actionTypes.AUTHENTICATION_SUCCESS,
         token: 'some-token',
-        userId: 'some-userId'
-      })).toEqual({
+        userId: 'some-userId',
+      },
+    )).toEqual({
       token: 'some-token',
       userId: 'some-userId',
       error: null,
       loading: false,
-      authRedirectPath: '/'
+      authRedirectPath: '/',
     });
   });
 
@@ -54,17 +55,18 @@ describe('auth reducer', () => {
         userId: null,
         error: null,
         loading: null,
-        authRedirectPath: '/'
+        authRedirectPath: '/',
       },
       {
         type: actionTypes.AUTHENTICATION_FAIL,
-        error: 'some-error'
-      })).toEqual({
+        error: 'some-error',
+      },
+    )).toEqual({
       token: null,
       userId: null,
       error: 'some-error',
       loading: false,
-      authRedirectPath: '/'
+      authRedirectPath: '/',
     });
   });
 
@@ -75,18 +77,19 @@ describe('auth reducer', () => {
         userId: 'some-userId',
         error: null,
         loading: false,
-        authRedirectPath: '/'
+        authRedirectPath: '/',
       },
       {
         type: actionTypes.AUTHENTICATION_LOGOUT,
         token: null,
-        userId: null
-      })).toEqual({
+        userId: null,
+      },
+    )).toEqual({
       token: null,
       userId: null,
       error: null,
       loading: false,
-      authRedirectPath: '/'
+      authRedirectPath: '/',
     });
   });
 
@@ -97,18 +100,18 @@ describe('auth reducer', () => {
         userId: null,
         error: null,
         loading: null,
-        authRedirectPath: '/'
+        authRedirectPath: '/',
       },
       {
         type: actionTypes.SET_AUTH_REDIRECT_PATH,
-        path: 'some-path'
-      })).toEqual({
+        path: 'some-path',
+      },
+    )).toEqual({
       token: null,
       userId: null,
       error: null,
       loading: null,
-      authRedirectPath: 'some-path'
+      authRedirectPath: 'some-path',
     });
   });
-
 });

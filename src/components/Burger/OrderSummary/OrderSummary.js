@@ -36,8 +36,10 @@ const orderSummary = props => {
 };
 
 orderSummary.propTypes = {
-  clicked: PropTypes.func, /* eslint-disable-line */
-  price: PropTypes.number, /* eslint-disable-line */
+  /* eslint-disable */
+  clicked: PropTypes.func,
+  price: PropTypes.number,
+  /* eslint-enable */
 };
 
 export default orderSummary;

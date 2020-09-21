@@ -199,8 +199,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onOrderBurger: (orderData, token) => dispatch(actions.purchaseBurger(orderData, token))/* eslint-disable-line */
+    onOrderBurger: (orderData, token) => dispatch(actions.purchaseBurger(orderData, token)),
   };
 };
-// eslint-disable-next-line
+
 export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, axios));

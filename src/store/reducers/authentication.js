@@ -6,13 +6,13 @@ const initialState = {
   userId: null,
   error: null,
   loading: null,
-  authRedirectPath: '/'
+  authRedirectPath: '/',
 };
 
-const authStart = (state, action) => {
+const authStart = state => {
   return updateObject(state, {
     error: null,
-    loading: true
+    loading: true,
   });
 };
 
@@ -20,27 +20,27 @@ const authSuccess = (state, action) => {
   return updateObject(state, {
     token: action.token,
     userId: action.userId,
-    loading: false
+    loading: false,
   });
 };
 
 const authFail = (state, action) => {
   return updateObject(state, {
     error: action.error,
-    loading: false
+    loading: false,
   });
 };
 
-const authLogout = (state, action) => {
+const authLogout = state => {
   return updateObject(state, {
     token: null,
-    userId: null
+    userId: null,
   });
 };
 
 const setAuthRedirectPath = (state, action) => {
   return updateObject(state, {
-    authRedirectPath: action.path
+    authRedirectPath: action.path,
   });
 };
 
@@ -55,7 +55,7 @@ const authReducer = (state = initialState, action) => {
     case actionTypes.AUTHENTICATION_LOGOUT:
       return authLogout(state, action);
     case actionTypes.SET_AUTH_REDIRECT_PATH:
-      return setAuthRedirectPath(state, action);/* eslint-disable-line */
+      return setAuthRedirectPath(state, action);
     default:
       return state;
   }

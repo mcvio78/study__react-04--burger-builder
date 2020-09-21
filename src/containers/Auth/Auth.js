@@ -66,7 +66,7 @@ const Auth = props => {
 
   const onSubmitHandler = event => {
     event.preventDefault();
-    if (controls.email.valid && controls.email.valid) {
+    if (controls.email.valid && controls.password.valid) {
       props.onAuthentication(
         controls.email.value,
         controls.password.value,
@@ -145,8 +145,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuthentication: (email, password, isSignUp) =>
-      dispatch(actions.authentication(email, password, isSignUp)), /* eslint-disable-line */
+    /* eslint-disable-next-line */
+    onAuthentication: (email, password, isSignUp) => dispatch(actions.authentication(email, password, isSignUp)),
     onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/')),
   };
 };

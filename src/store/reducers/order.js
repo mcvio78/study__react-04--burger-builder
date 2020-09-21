@@ -54,7 +54,7 @@ const fetchOrderFail = state => {
   };
   return updateObject(state, stateUpdatedProperties);
 };
-/* eslint-disable */
+
 const orderReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.PURCHASE_INIT:
@@ -75,5 +75,5 @@ const orderReducer = (state = initialState, action) => {
       return state;
   }
 };
-/* eslint-enable */
+
 export default orderReducer;

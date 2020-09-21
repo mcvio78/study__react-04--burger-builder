@@ -1,4 +1,4 @@
-export const loggerMiddleware = () => { /* eslint-disable-line */
+export const loggerMiddleware = () => {
   return next => {
     return action => {
       // console.log('[Middleware] before state', store.getState());

@@ -14,15 +14,12 @@ configure({ adapter: new Adapter() });
 // });
 
 describe('<App/>', () => {
-
-
   test('renders learn react link', () => {
     const wrapper = shallow(<App onTryAutoSignUp={() => {
-    }}/>);
+    }} />);
     wrapper.setProps({ isAuth: true });
     expect(wrapper.find(Switch)).toHaveLength(1);
     expect(wrapper.find(Route)).toHaveLength(5);
     expect(wrapper.find(Redirect)).toHaveLength(1);
   });
 });
-

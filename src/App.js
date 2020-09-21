@@ -7,7 +7,7 @@ import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 import Logout from './containers/Auth/Logout/Logout';
 import * as actions from './store/actions/index';
 import './sytles/App.global.scss';
-/* eslint-disable */
+
 const Auth = lazy(() => {
   return import('./containers/Auth/Auth');
 });
@@ -17,7 +17,7 @@ const Checkout = lazy(() => {
 const Orders = lazy(() => {
   return import('./containers/Orders/Orders');
 });
-/* eslint-enable */
+
 export const App = props => {
   const { onTryAutoSignUp } = props;
 
