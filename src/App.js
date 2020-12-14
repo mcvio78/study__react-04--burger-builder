@@ -8,6 +8,7 @@ import Logout from './containers/Auth/Logout/Logout';
 import * as actions from './store/actions/index';
 import './sytles/App.global.scss';
 
+// lazy loading
 const Auth = lazy(() => {
   return import('./containers/Auth/Auth');
 });
